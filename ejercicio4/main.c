@@ -9,12 +9,13 @@ int main()
     printf("Ingrese la base del triangulo: ");
     scanf("%d", &base);
 
-    fflush(stdin);
     printf("Ingrese la altura: ");
+    fflush(stdin);
     scanf("%d", &altura);
 
     superficie= (base*altura)/2;
-    printf("La superficie del triangulo es %d", superficie);
+    perimetro= base*3;
+    printf("La superficie del triangulo es %d y su perimetro es %d", superficie, perimetro);
 
     return 0;
 }
