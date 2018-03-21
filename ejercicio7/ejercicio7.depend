@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1521642821 source:c:\users\alumno\desktop\prog\ejercicio7\main.c
+	<stdio.h>
+	<limits.h>
+
