@@ -25,3 +25,29 @@ int division(int a, int b){
         resultado = a / b;
         return resultado;
 }
+int mult(int a, int b){
+        int resultado;
+        resultado = a * b;
+        return resultado;
+}
+int factorial(int n)
+{
+        long resp;
+        if(n==1)
+        return 1;
+        resp=n* factorial(n-1);
+        return (resp);
+}
+unsigned int verifica(void)
+{
+        char letra;
+        printf("Ingrese opcion...S/N?\n");
+        letra=toupper(getche());
+        while(!((letra=='S')||(letra=='N')))
+        {
+        printf("Ha ingresado opci¢n no valida...Reintente el ingreso(S/N)...\n");
+        letra=toupper(getche());
+        }
+        return (letra=='S');
+}
+

@@ -4,13 +4,15 @@
 
 int main()
 {
-    char seguir='s';
+    char seguir='S';
     int opcion=0;
     int num1;
     int num2;
+    int r;
     int rta;
+    long rtaFac;
 
-    while(seguir=='s')
+    while(seguir=='S')
     {
         menu();
         scanf("%d",&opcion);
@@ -19,7 +21,7 @@ int main()
         switch(opcion)
         {
             case 1:
-                printf("Ingrese primer numero: \n");
+                printf("Ingrese un numero: \n");
                 scanf("%d", &num1);
                 break;
             case 2:
@@ -44,17 +46,21 @@ int main()
                 }
                 break;
             case 6:
-
+                rta = mult(num1,num2);
+                printf("Multiplicacion = %d\n", rta);
                 break;
             case 7:
+                rtaFac = factorial(num1);
+                printf("El factorial de %d es %ld\n",num1,rtaFac);
                 break;
             case 8:
                 break;
             case 9:
-                seguir = 'n';
+                if(verifica()==0)
+                    seguir = 'N';
                 break;
-        }
 
+            }
     }
     return 0;
 }
