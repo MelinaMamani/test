@@ -1,5 +1,5 @@
 void menu(){
-        printf("1- Ingresar 1er operando (A=x)\n");
+        printf("\n1- Ingresar 1er operando (A=x)\n");
         printf("2- Ingresar 2do operando (B=y)\n");
         printf("3- Calcular la suma (A+B)\n");
         printf("4- Calcular la resta (A-B)\n");
@@ -20,9 +20,9 @@ int resta(int a, int b){
         resultado = a - b;
         return resultado;
 }
-int division(int a, int b){
-        int resultado;
-        resultado = a / b;
+float division(int a, int b){
+        float resultado;
+        resultado = (float) a / b;
         return resultado;
 }
 int mult(int a, int b){
@@ -32,7 +32,7 @@ int mult(int a, int b){
 }
 int factorial(int n)
 {
-        long resp;
+        int resp;
         if(n==1)
         return 1;
         resp=n* factorial(n-1);
@@ -41,11 +41,11 @@ int factorial(int n)
 unsigned int verifica(void)
 {
         char letra;
-        printf("Ingrese opcion...S/N?\n");
+        printf("Desea continuar...S/N?\n");
         letra=toupper(getche());
         while(!((letra=='S')||(letra=='N')))
         {
-        printf("Ha ingresado opci¢n no valida...Reintente el ingreso(S/N)...\n");
+        printf("\nHa ingresado opci¢n no valida...Reintente el ingreso(S/N)...\n");
         letra=toupper(getche());
         }
         return (letra=='S');

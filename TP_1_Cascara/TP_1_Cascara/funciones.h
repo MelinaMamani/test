@@ -4,7 +4,7 @@
 void menu();
 int suma(int, int);
 int resta(int, int);
-int division(int, int);
+float division(int, int);
 int mult(int, int);
 int factorial(int);
 unsigned int verifica(void);

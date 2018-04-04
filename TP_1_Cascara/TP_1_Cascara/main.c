@@ -8,9 +8,8 @@ int main()
     int opcion=0;
     int num1;
     int num2;
-    int r;
     int rta;
-    long rtaFac;
+    float rtaDiv;
 
     while(seguir=='S')
     {
@@ -41,8 +40,8 @@ int main()
                     printf("No se puede divir por 0. Ingrese otro numero.\n");
                 }
                 else{
-                   rta = division(num1,num2);
-                   printf("Division = %d\n", rta);
+                   rtaDiv = division(num1,num2);
+                   printf("Division = %.2f\n", rtaDiv);
                 }
                 break;
             case 6:
@@ -50,8 +49,8 @@ int main()
                 printf("Multiplicacion = %d\n", rta);
                 break;
             case 7:
-                rtaFac = factorial(num1);
-                printf("El factorial de %d es %ld\n",num1,rtaFac);
+                rta = factorial(num1);
+                printf("El factorial de %d es %d\n",num1,rta);
                 break;
             case 8:
                 break;
