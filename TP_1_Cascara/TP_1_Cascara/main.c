@@ -17,6 +17,7 @@ int main()
         scanf("%d",&opcion);
 
         system("cls");
+
         switch(opcion)
         {
             case 1:
@@ -49,8 +50,13 @@ int main()
                 printf("Multiplicacion = %d\n", rta);
                 break;
             case 7:
-                rta = factorial(num1);
-                printf("El factorial de %d es %d\n",num1,rta);
+                if(num1>0){
+                    rta = factorial(num1);
+                    printf("El factorial de %d es %d\n",num1,rta);
+                }
+                else{
+                    printf("No se puede factorear numeros negativos.\n");
+                }
                 break;
             case 8:
                 break;
@@ -60,6 +66,7 @@ int main()
                 break;
 
             }
+
     }
     return 0;
 }
