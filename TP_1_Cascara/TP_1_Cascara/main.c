@@ -64,7 +64,9 @@ int main()
                 if(verifica()==0)
                     seguir = 'N';
                 break;
-
+            default:
+                printf("Opcion no valida.\n");
+                break;
             }
 
     }
