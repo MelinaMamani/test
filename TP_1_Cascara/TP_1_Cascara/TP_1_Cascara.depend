@@ -1,30 +1,10 @@
 # depslib dependency file v1.0
-1522248704 source:c:\users\alumno\desktop\tp_1_cascara\tp_1_cascara\funciones.c
+1523450843 source:c:\users\alumno\desktop\mm\tp_1_cascara\tp_1_cascara\funciones.c
 
-1522436153 source:c:\users\cristina\desktop\melina\test\tp_1_cascara\tp_1_cascara\funciones.c
-
-1522436283 source:c:\users\cristina\desktop\melina\test\tp_1_cascara\tp_1_cascara\main.c
+1523451042 source:c:\users\alumno\desktop\mm\tp_1_cascara\tp_1_cascara\main.c
 	<stdio.h>
 	<stdlib.h>
 	"funciones.h"
 
-1522436103 c:\users\cristina\desktop\melina\test\tp_1_cascara\tp_1_cascara\funciones.h
-
-1522851489 source:c:\users\alumno\desktop\mm\tp_1_cascara\tp_1_cascara\funciones.c
-
-1522850995 source:c:\users\alumno\desktop\mm\tp_1_cascara\tp_1_cascara\main.c
-	<stdio.h>
-	<stdlib.h>
-	"funciones.h"
-
-1522850680 c:\users\alumno\desktop\mm\tp_1_cascara\tp_1_cascara\funciones.h
-
-1523273792 source:c:\users\alumno\desktop\progr\tp_1_cascara\tp_1_cascara\funciones.c
-
-1523276082 source:c:\users\alumno\desktop\progr\tp_1_cascara\tp_1_cascara\main.c
-	<stdio.h>
-	<stdlib.h>
-	"funciones.h"
-
-1523273792 c:\users\alumno\desktop\progr\tp_1_cascara\tp_1_cascara\funciones.h
+1523448195 c:\users\alumno\desktop\mm\tp_1_cascara\tp_1_cascara\funciones.h
 

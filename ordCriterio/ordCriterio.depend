@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1523458318 source:c:\users\alumno\desktop\mm\ordcriterio\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

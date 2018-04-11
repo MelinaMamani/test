@@ -10,8 +10,8 @@ void menu(){
         printf("9) Salir\n");
 }
 
-int suma(int a, int b){
-        int resultado;
+float suma(float a, float b){
+        float resultado;
         resultado = a + b;
         return resultado;
 }

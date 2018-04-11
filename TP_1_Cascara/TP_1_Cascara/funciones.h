@@ -2,7 +2,7 @@
 #define FUNCIONES_H_INCLUDED
 
 void menu();
-int suma(int, int);
+float suma(float, float);
 int resta(int, int);
 float division(int, int);
 int mult(int, int);
