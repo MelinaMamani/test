@@ -14,6 +14,7 @@ int main()
     while(seguir=='S')
     {
         menu();
+        printf("\nIngrese una opcion: ");
         scanf("%d",&opcion);
 
         system("cls");
