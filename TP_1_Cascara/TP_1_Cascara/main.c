@@ -8,8 +8,6 @@ int main()
     int opcion=0;
     float num1=0.00;
     float num2=0.00;
-    float rta;
-    float rtaFac;
 
     while(seguir=='S')
     {
@@ -30,36 +28,26 @@ int main()
                 scanf("%f", &num2);
                 break;
             case 3:
-                rta = suma(num1,num2);
-                printf("Suma = %.1f\n", rta);
+                suma(num1,num2);
                 break;
             case 4:
-                rta = resta(num1,num2);
-                printf("Resta = %.1f\n", rta);
+                resta(num1,num2);
                 break;
             case 5:
-                if(num2==0){
-                    printf("No se puede divir por 0. Ingrese otro numero.\n");
-                }
-                else{
-                   rta = division(num1,num2);
-                   printf("Division = %.2f\n", rta);
-                }
+                division(num1,num2);
                 break;
             case 6:
-                rta = mult(num1,num2);
-                printf("Multiplicacion = %.2f\n", rta);
+                mult(num1,num2);
                 break;
             case 7:
-                if(num1>-1 && num1<13){
-                    rtaFac = factorial(num1);
-                    printf("El factorial de %.1f es %d\n",num1,rtaFac);
-                }
-                else{
-                    printf("No se puede factorear numeros negativos o mayores a 12.\n");
-                }
+                factorial(num1);
                 break;
             case 8:
+                suma(num1,num2);
+                resta(num1,num2);
+                division(num1,num2);
+                mult(num1,num2);
+                factorial(num1);
                 break;
             case 9:
                 if(verifica()==0)

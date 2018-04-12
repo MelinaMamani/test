@@ -9,34 +9,51 @@ void menu(float a, float b){
         printf("8) Calcular todas las operaciones\n");
         printf("9) Salir\n");
 }
-
-float suma(float a, float b){
+void suma(float a, float b){
         float resultado;
         resultado = a + b;
-        return resultado;
+        printf("Suma = %.2f\n", resultado);
 }
-float resta(float a, float b){
+void resta(float a, float b){
         float resultado;
         resultado = a - b;
-        return resultado;
+        printf("Resta = %.2f\n", resultado);
 }
-float division(float a, float b){
+void division(float a, float b){
         float resultado;
-        resultado = a / b;
-        return resultado;
+        if(b==0){
+                printf("No se puede divir por 0. Ingrese otro numero en la opcion 2.\n");
+                }
+        else{
+                resultado = a / b;
+                printf("Division = %.2f\n", resultado);
+        }
 }
-float mult(float a, float b){
+void mult(float a, float b){
         float resultado;
         resultado = a * b;
-        return resultado;
+        printf("Multiplicacion = %.2f\n", resultado);
 }
-float factorial(float n)
+void factorial(float n)
 {
-        int resp;
-        if(n==1)
-        return 1;
-        resp=n* factorial(n-1);
-        return (resp);
+    int i;
+    int numFac;
+    unsigned long long factor=1;
+    numFac = ceil(n);
+
+    for(i=1;i<=numFac;i++)
+    {
+        factor=factor*i;
+    }
+    if(n<0){
+            printf("No se puede factorear numeros negativos.\n");
+            }
+    else if(n>20){
+            printf("Error. Numero demasiado alto.\n");
+            }
+    else{
+            printf("El factorial de %d es %llu\n",numFac,factor);
+            }
 }
 unsigned int verifica(void)
 {
