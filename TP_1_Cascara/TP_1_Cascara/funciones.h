@@ -1,12 +1,12 @@
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
 
-void menu();
+void menu(float, float);
 float suma(float, float);
-int resta(int, int);
-float division(int, int);
-int mult(int, int);
-int factorial(int);
+float resta(float, float);
+float division(float, float);
+float mult(float, float);
+float factorial(float);
 unsigned int verifica(void);
 
 #endif // FUNCIONES_H_INCLUDED

@@ -6,14 +6,14 @@ int main()
 {
     char seguir='S';
     int opcion=0;
-    float num1;
-    float num2;
+    float num1=0.00;
+    float num2=0.00;
     float rta;
-    int rtaFac;
+    float rtaFac;
 
     while(seguir=='S')
     {
-        menu();
+        menu(num1, num2);
         printf("\nIngrese una opcion: ");
         scanf("%d",&opcion);
 
@@ -35,7 +35,7 @@ int main()
                 break;
             case 4:
                 rta = resta(num1,num2);
-                printf("Resta = %d\n", rta);
+                printf("Resta = %.1f\n", rta);
                 break;
             case 5:
                 if(num2==0){
@@ -48,15 +48,15 @@ int main()
                 break;
             case 6:
                 rta = mult(num1,num2);
-                printf("Multiplicacion = %d\n", rta);
+                printf("Multiplicacion = %.2f\n", rta);
                 break;
             case 7:
-                if(num1>0){
+                if(num1>-1 && num1<13){
                     rtaFac = factorial(num1);
                     printf("El factorial de %.1f es %d\n",num1,rtaFac);
                 }
                 else{
-                    printf("No se puede factorear numeros negativos.\n");
+                    printf("No se puede factorear numeros negativos o mayores a 12.\n");
                 }
                 break;
             case 8:
