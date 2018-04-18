@@ -22,7 +22,7 @@ void ordenarPorNombre(eEmpleado[], int);
 
 int main()
 {
-    eEmpleado plantel [CANT] = {{"Juan", 23, 853.77, 'm',{1,1,1960}}, {"Ana", 37, 1050.67, 'f',{2,2,1967}},{"Anoc", 23, 853.77, 'm',{1,1,1960}}};
+    eEmpleado plantel [CANT] = {{"Juan", 23, 853.77, 'm',1,1,1960}, {"Ana", 37, 1050.67, 'f',2,2,1967},{"Anoc", 23, 853.77, 'm',1,1,1960}};
 
     mostrarEmpleados(plantel, CANT);
     ordenarPorCriterios(plantel, CANT);
@@ -62,13 +62,14 @@ void mostrarEmpleados(eEmpleado vec[], int tam){
 }
 
 void mostrarEmpleado(eEmpleado emp){
+    char cad[30];
+
     printf("\n \nLegajo: %d", emp.legajo);
     printf("\nNombre: %s", emp.nombre);
     printf("\nSueldo: %.2f", emp.sueldo);
     printf("\nSexo: %c", emp.sexo);
-    printf("\nDia: %d", emp.fn.dia);
-    printf("\nMes: %d", emp.fn.mes);
-    printf("\nAnio: %d", emp.fn.anio);
+    sprintf(cad, "%d/%d%/%d", emp.fn.dia, emp.fn.mes, emp.fn.anio);
+    printf("\nFecha nac.: %s", cad);
 }
 
 void ordenarPorNombre(eEmpleado vec[], int tam){
