@@ -4,6 +4,12 @@
 
 int main()
 {
+    /**
+    * Se inicializan cuatro variables:
+    * 'seguir' para continuar ejecutando el programa
+    * 'opcion' para elegir una del menu
+    * 'num1' y 'num2' para luego cargar dos numeros
+    **/
     char seguir='S';
     int opcion=0;
     float num1=0.00;
