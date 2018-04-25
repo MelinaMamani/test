@@ -1,85 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
-#define TAM 3
-
-//Menu limpia la pantalla
-typedef struct{
-    int dia;
-    int mes;
-    int anio;
-}eFecha;
-
-typedef struct{
-    int id;
-    char descripcion[51];
-    int isEmpty;
-}eSector;
-
-typedef struct{
-    int legajo;
-    char nombre[41];
-    char sexo;
-    float sueldo;
-    eFecha fechaIngreso;
-    int isEmpty;
-    int idSector;
-}eEmpleado;
-
-
-int main(){
-system("title ABSformularios");
-char salir;
-eEmpleado gente[TAM];
-inicializarEmpleados(gente,TAM);
-
-int legajo;
-
-do{
-    switch (menu()){
-
-    case 1 :
-        altaEmpleado(gente,TAM);
-        break;
-
-    /*case 2 :
-
-        break;
-    case 3 :
-
-        break;
-    case 4 :
-
-        break;
-    case 5 :
-
-        break;*/
-    case 6 :
-        salir="s";
-        break;
-    default:
-        printf("\nOpcion incorrecta\n");
-        system("pause");
-        system("cls");
-    }
-
-}while(salir=="s");
-
-  return(0);
-}
-
-
-
-
 int menu(){
+
     int opcion;
-    printf("1_Alta\n");
-    printf("2_Baja\n");
-    printf("3_Modificar\n");
-    printf("4_Listar\n");
-    printf("5_Ordenar\n");
-    printf("6_Salir\n");
+
+    printf("1) Alta\n");
+    printf("2) Baja\n");
+    printf("3) Modificar\n");
+    printf("4) Listar\n");
+    printf("5) Ordenar\n");
+    printf("6) Salir\n");
+
+    printf("Ingrese una opcion: ");
     scanf("%d",&opcion);
-    return(opcion);
+
+    return opcion;
 }
 
 void inicializarEmpleados(eEmpleado vec[],int tam){
@@ -129,15 +62,12 @@ void altaEmpleado(eEmpleado vec[],int tam){
         printf("\nEl sistema esta completo. No se puede dar de alta a empleados nuevos.\n\n");
     }
     else
-    {
-        printf("Ingrese legajo: ");
-        scanf("%d", &legajo);
 
         esta = buscarEmpleado(vec, tam, legajo);
 
         if(esta != -1)
         {
-            printf("\nEl legajo %d ya esta dado de alta en el sistema\n", legajo);
+            printf("\nEl legajo %d ya esta dado de alta en el sistema.\n", legajo);
                    mostrarEmpleado(vec[esta]);
         }
         else{
@@ -160,8 +90,8 @@ void altaEmpleado(eEmpleado vec[],int tam){
 
                    vec[indice] = nuevoEmpleado;
 
-                   printf("\nAlta exitosa!!!\n\n");
+                   printf("\nAlta exitosa! \n\n");
 
            }
   }
-}
+

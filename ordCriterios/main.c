@@ -33,8 +33,6 @@ int main(void){
         salario[i] = salario[j];
         salario[j] = salarioAux;
         }
-        UTN FRA – Tecnicatura Superior en Programación. http://www.sistemas-utnfra.com.ar 4
-        Programación I – Laboratorio I
         if(salario[i] == salario[j]){
         if(strcmp(nombre[i],nombre[j])>0){
         strcpy(nombreAux, nombre[i]);

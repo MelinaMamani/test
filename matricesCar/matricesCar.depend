@@ -1,1 +1,7 @@
 # depslib dependency file v1.0
+1524657292 source:c:\users\alumno\desktop\progr\matricescar\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+

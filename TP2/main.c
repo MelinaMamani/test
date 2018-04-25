@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define TAM 5
 #include "funciones.h"
-#define TAM 3
-
-//Menu limpia la pantalla
-
 
 int main(){
 system("title ABSformularios");
@@ -21,18 +18,18 @@ do{
         altaEmpleado(gente,TAM);
         break;
 
-    /*case 2 :
-
+    case 2 :
+        bajaEmpleado(gente,TAM);
         break;
     case 3 :
-
+        printf("Modificar");
         break;
     case 4 :
-
+        printf("Listar");
         break;
     case 5 :
-
-        break;*/
+        printf("Ordenar");
+        break;
     case 6 :
         salir="s";
         break;

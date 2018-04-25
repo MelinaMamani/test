@@ -1,3 +1,4 @@
+
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
 
@@ -29,7 +30,8 @@ void mostrarEmpleados(eEmpleado[], int);
 void mostrarEmpleado(eEmpleado);
 int buscarLibre(eEmpleado[], int);
 int buscarEmpleado(eEmpleado[], int, int);
+void altaEmpleado(eEmpleado[], int)
 void bajaEmpleado(eEmpleado[], int);
-
+void modificaEmpleado(eEmpleado[], int)
 
 #endif // FUNCIONES_H_INCLUDED
