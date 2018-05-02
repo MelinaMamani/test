@@ -21,18 +21,18 @@ do{
         altaEmpleado(gente,TAM);
         break;
 
-    /*case 2 :
-
+    case 2 :
+        bajaEmpleado(gente,TAM);
         break;
     case 3 :
-
+        printf("\nMod");
         break;
     case 4 :
-
+        printf("\nLista");
         break;
     case 5 :
-
-        break;*/
+        printf("\nOrdenar");
+        break;
     case 6 :
         salir="s";
         break;
@@ -44,5 +44,5 @@ do{
 
 }while(salir=="s");
 
-  return(0);
+  return 0;
 }
