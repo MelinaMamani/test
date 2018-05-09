@@ -40,7 +40,7 @@ int main(void){
         strcpy(nombre[j], nombreAux);
         legajoAux = legajo[i];
         legajo[i] = legajo[j];
-salario[j] = salarioAux;*/
+salario[j] = salarioAux;
 }
 }
 }

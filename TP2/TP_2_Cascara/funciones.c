@@ -1,19 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "funciones.h"
+
 int menu(){
 
     int opcion;
-
-    system("cls");
     printf("1) Alta\n");
     printf("2) Baja\n");
     printf("3) Modificar\n");
     printf("4) Listar\n");
-    printf("5) Ordenar\n");
-    printf("6) Salir\n");
+    printf("5) Ordenar por nombres\n");
+    printf("6) Mostrar grafico de edades\n");
+    printf("7) Salir\n");
 
     printf("Ingrese una opcion: ");
     scanf("%d",&opcion);
 
     return opcion;
+}
+
+void hardCode(eSector sectores[]){
+    eSector nuevoSector;
+
+    nuevoSector.id = 1;
+    strcpy(nuevoSector.descripcion, "RRHH");
+    nuevoSector.isEmpty = 0;
+    sectores[0] = nuevoSector;
+
+
+    nuevoSector.id = 2;
+    strcpy(nuevoSector.descripcion, "Sistemas");
+    nuevoSector.isEmpty = 0;
+    sectores[1] = nuevoSector;
+
+    sectores[2].id = 3;
+    strcpy(sectores[2].descripcion, "Administracion");
+    sectores[2].isEmpty = 0;
+
+    sectores[3].id = 4;
+    strcpy(sectores[3].descripcion, "Compras");
+    sectores[3].isEmpty = 0;
+
+    sectores[4].id = 5;
+    strcpy(sectores[4].descripcion, "Deposito");
+    sectores[4].isEmpty = 0;
 }
 
 void inicializarEmpleados(eEmpleado vec[],int tam){
@@ -35,6 +66,27 @@ int buscarLibre(eEmpleado vec[] ,int tam){
     return indice;
 }
 
+void mostrarEmpleados(eEmpleado vec[], int tam, eSector sec[]){
+    int i, j;
+    printf("\nLegajo   \tNombre\tEdad\tSexo\tSueldo  \tF. de Ingr.\tSector\n");
+    for(i=0; i< tam; i++)
+    {
+        if(vec[i].isEmpty == 0)
+        {
+            for(j=0; j<5; j++){
+                if(vec[i].idSector==sec[j].id){
+                    printf("%4d \t%s \t%d \t%c \t$%8.2f \t%02d/%02d/%4d \t%s\n", vec[i].legajo, vec[i].nombre, vec[i].edad, vec[i].sexo, vec[i].sueldo, vec[i].fechaIngreso.dia, vec[i].fechaIngreso.mes, vec[i].fechaIngreso.anio, sec[j].descripcion);
+                }
+            }
+        }
+    }
+    printf("\n");
+}
+
+void mostrarEmpleado(eEmpleado emp){
+    printf("%4d     %s      %d     %c     $%10.2f    %02d/%02d/%4d     Num. Sector: %d\n", emp.legajo, emp.nombre, emp.edad, emp.sexo, emp.sueldo, emp.fechaIngreso.dia, emp.fechaIngreso.mes, emp.fechaIngreso.anio, emp.idSector);
+}
+
 int buscarEmpleado(eEmpleado vec[],int tam,int legajo){
     int indice=-1;
     int i;
@@ -52,12 +104,13 @@ void altaEmpleado(eEmpleado vec[],int tam){
     int indice;
     int esta;
     int legajo;
+    char confirma;
+    char aux[41];
 
     system("cls");
-    printf("Alta empleado\n\n");
+    printf("Alta de empleado\n\n");
 
-    printf("Ingrese legajo: ");
-    scanf("%d", &legajo);
+    legajo = getInt("Ingrese el legajo: ");
 
     indice = buscarLibre(vec, tam);
 
@@ -82,20 +135,41 @@ void altaEmpleado(eEmpleado vec[],int tam){
                    fflush(stdin);
                    gets(nuevoEmpleado.nombre);
 
-                   printf("Ingrese sexo: ");
-                   fflush(stdin);
-                   scanf("%c", &nuevoEmpleado.sexo);
+                   nuevoEmpleado.edad = getInt("Ingrese su edad: ");
 
-                   printf("Ingrese sueldo: ");
-                   scanf("%f", &nuevoEmpleado.sueldo);
+                   nuevoEmpleado.sexo = getChar("Ingrese el sexo: ");
 
-                   printf("Ingrese fecha de ingreso d / m / a: ");
-                   scanf("%d %d %d", &nuevoEmpleado.fechaIngreso.dia, &nuevoEmpleado.fechaIngreso.mes, &nuevoEmpleado.fechaIngreso.anio);
+                   nuevoEmpleado.sueldo = getFloat("Ingrese el sueldo: ");
+
+                   printf("Ingrese fecha de ingreso d / m / a\n");
+                   nuevoEmpleado.fechaIngreso.dia = getInt("Dia: ");
+                   nuevoEmpleado.fechaIngreso.mes = getInt("Mes: ");
+                   nuevoEmpleado.fechaIngreso.anio = getInt("Anio: ");
+
+                   printf("\n1) RRHH");
+                   printf("\n2) Sistemas");
+                   printf("\n3) Administracion");
+                   printf("\n4) Compras");
+                   printf("\n5) Deposito");
+                   nuevoEmpleado.idSector = getInt("\nIngrese un sector: ");
 
                    vec[indice] = nuevoEmpleado;
 
-                   printf("\nAlta exitosa! \n\n");
+                   do{
+                        printf("\nConfirma el alta de empleado? s/n: ");
+                        fflush(stdin);
+                        scanf("%c", &confirma);
+                        confirma = tolower(confirma);
+                    }while(confirma != 's' && confirma != 'n');
 
+                    if(confirma == 's'){
+                        system("cls");
+                        printf("\nAlta realizada.\n\n");
+                    }
+                    else{
+                        system("cls");
+                        printf("\nAlta no realizada.\n\n");
+                    }
            }
   }
 
@@ -105,10 +179,9 @@ void bajaEmpleado(eEmpleado vec[], int tam){
     char confirma;
 
     system("cls");
-    printf("---Baja Empleado---\n\n");
+    printf("Baja del Empleado\n\n");
 
-        printf("Ingrese legajo: ");
-        scanf("%d", &legajo);
+        legajo = getInt("Ingrese el legajo: ");
 
         esta = buscarEmpleado(vec, tam, legajo);
 
@@ -118,11 +191,10 @@ void bajaEmpleado(eEmpleado vec[], int tam){
 
         }
         else{
-
-                mostrarEmpleado(vec[esta]);
+            mostrarEmpleado(vec[esta]);
 
         do{
-            printf("\nConfirma baja? [s|n]: ");
+            printf("\nConfirma baja? s/n: ");
             fflush(stdin);
             scanf("%c", &confirma);
             confirma = tolower(confirma);
@@ -130,10 +202,10 @@ void bajaEmpleado(eEmpleado vec[], int tam){
 
         if(confirma == 's'){
             vec[esta].isEmpty = 1;
-            printf("\nSe ha realizado la baja\n\n");
+            printf("\nBaja realizada.\n\n");
         }
         else{
-            printf("\nSe ha cancelado la baja\n\n");
+            printf("\nBaja cancelada.\n\n");
         }
 
         }
@@ -143,12 +215,12 @@ void modificaEmpleado(eEmpleado vec[], int tam){
     int legajo;
     int esta;
     char confirma;
+    eEmpleado modEmpleado;
 
     system("cls");
-    printf("---Modifica Empleado---\n\n");
+    printf("Modificar Empleado\n\n");
 
-        printf("Ingrese legajo: ");
-        scanf("%d", &legajo);
+        legajo = getInt("Ingrese el legajo: ");
 
         esta = buscarEmpleado(vec, tam, legajo);
 
@@ -160,22 +232,49 @@ void modificaEmpleado(eEmpleado vec[], int tam){
         else{
 
                 mostrarEmpleado(vec[esta]);
-                switch(submenuMod()){
+
+              switch(submenuMod()){
 
                 case 1:
+                    modEmpleado.legajo = getInt("Ingrese nuevo legajo: ");
+                    vec[esta].legajo = modEmpleado.legajo;
                     break;
                 case 2:
+                    printf("Ingrese nuevo nombre: ");
+                    fflush(stdin);
+                    gets(modEmpleado.nombre);
+                    strcpy(vec[esta].nombre, modEmpleado.nombre);
                     break;
                 case 3:
+                    modEmpleado.edad = getInt("Ingrese nueva edad: ");
+                    vec[esta].edad = modEmpleado.edad;
                     break;
                 case 4:
+                    modEmpleado.sexo = getChar("Ingrese nuevo sexo: ");
+                    vec[esta].sexo = modEmpleado.sexo;
                     break;
                 case 5:
+                    modEmpleado.sueldo = getFloat("Ingrese nuevo sueldo: ");
+                    vec[esta].sueldo = modEmpleado.sueldo;
                     break;
                 case 6:
+                    printf("Ingrese nueva fecha de ingreso d / m / a: ");
+                    modEmpleado.fechaIngreso.dia = getInt("Dia: ");
+                    modEmpleado.fechaIngreso.mes = getInt("Mes: ");
+                    modEmpleado.fechaIngreso.anio = getInt("Anio: ");
+
+                    vec[esta].fechaIngreso.dia = modEmpleado.fechaIngreso.dia;
+                    vec[esta].fechaIngreso.mes = modEmpleado.fechaIngreso.mes;
+                    vec[esta].fechaIngreso.anio = modEmpleado.fechaIngreso.anio;
                     break;
                 case 7:
-                    salir = 's';
+                    printf("\n1) RRHH");
+                    printf("\n2) Sistemas");
+                    printf("\n3) Administracion");
+                    printf("\n4) Compras");
+                    printf("\n5) Deposito");
+                    modEmpleado.idSector = getInt("Ingrese nuevo sector: ");
+                    vec[esta].idSector = modEmpleado.idSector;
                     break;
                 default:
                     printf("\nOpcion no valida.\n");
@@ -183,20 +282,18 @@ void modificaEmpleado(eEmpleado vec[], int tam){
                     system("cls");
                     break;
                 }
-
         do{
-            printf("\nConfirma baja? [s|n]: ");
+            printf("\nConfirma modificacion? s/n: ");
             fflush(stdin);
             scanf("%c", &confirma);
             confirma = tolower(confirma);
         }while(confirma != 's' && confirma != 'n');
 
         if(confirma == 's'){
-            vec[esta].isEmpty = 1;
-            printf("\nSe ha realizado la modificacion\n\n");
+            printf("\nModificacion realizada.\n\n");
         }
         else{
-            printf("\nSe ha cancelado la modificacion\n\n");
+            printf("\nModificacion cancelada.\n\n");
         }
 
         }
@@ -204,17 +301,136 @@ void modificaEmpleado(eEmpleado vec[], int tam){
 
 int submenuMod(){
     int opcion;
-
+    system("cls");
+    printf("Menu modificar empleado: \n");
     printf("1) Legajo\n");
     printf("2) Nombre\n");
-    printf("3) Sexo\n");
-    printf("4) Sueldo\n");
-    printf("5) Fecha de ingreso\n");
-    printf("6) Sector")
-    printf("7) Salir\n");
+    printf("3) Edad\n");
+    printf("4) Sexo\n");
+    printf("5) Sueldo\n");
+    printf("6) Fecha de ingreso\n");
+    printf("7) Sector\n");
 
-    printf("Ingrese una opcion: ");
-    scanf("%d",&opcion);
+    opcion = getInt("Seleccione una opcion: ");
 
     return opcion;
+}
+
+void ordenarPorNombre(eEmpleado vec[], int tam, eSector sec[]){
+    int i, j;
+    eEmpleado auxiliar;
+
+    for(i=0; i< tam; i++){
+        for(j=i+1; j<tam; j++){
+                if(stricmp(vec[i].nombre,vec[j].nombre)>0){
+                    auxiliar = vec[i];
+                    vec[i] = vec[j];
+                    vec[j] = auxiliar;
+                }
+            }
+    }
+    printf("\nNombre\tLegajo   \tEdad\tSexo\tSueldo\tF. de Ingr.\tSector\n");
+    for(i=0; i< tam; i++)
+    {
+        if(vec[i].isEmpty == 0)
+        {
+            for(j=0; j<5; j++){
+                if(vec[i].idSector==sec[j].id){
+                    printf("%s\t%4d   \t%d\t%c\t$%8.2f\t%02d/%02d/%4d\t%s\n", vec[i].nombre, vec[i].legajo, vec[i].edad, vec[i].sexo, vec[i].sueldo, vec[i].fechaIngreso.dia, vec[i].fechaIngreso.mes, vec[i].fechaIngreso.anio, sec[j].descripcion);
+                }
+            }
+        }
+    }
+}
+
+void contarEdades(eEmpleado vec[], int tam){
+    int a = 0, b = 0, c = 0, mayor, i, flag=0;
+
+    for(i=0; i<tam; i++){
+        if(vec[i].isEmpty==0){
+           if(vec[i].edad>0 && vec[i].edad<=18){
+                    a++;
+                }
+            else if(vec[i].edad>18 && vec[i].edad<35){
+                    b++;
+                }
+            else if(vec[i].edad>35){
+                    c++;
+                }
+           }
+        }
+
+    if(a >= b && a >= c){
+        mayor = a;
+    }else{
+        if(b >= a && b >= c)
+        {
+            mayor = b;
+        }
+        else{
+        mayor = c;
+        }
+    }
+
+    for(i=mayor; i>0; i--){
+        if(i<= a){
+            printf("*");
+        }
+        if(i<= b){
+            flag=1;
+            printf("\t*");
+        }
+        if(i<= c){
+            if(flag==0)
+                printf("\t\t*");
+            if(flag==1)
+                printf("\t*");
+
+        }
+        printf("\n");
+    }
+    printf("<18\t19-35\t>35\n\n");
+
+}
+
+/**
+* \brief Verifica el ingreso de caracteres. Chequea para que
+solo sean admitidas las letras S o N.
+* Se ingresa void y devuelve un entero sin signo
+0 si se ingreso la N
+1 si se ingreso la S
+*/
+unsigned int verifica(void)
+{
+        char letra;
+        printf("\nDesea continuar? (S/N)\n");
+        letra=toupper(getche());
+        while(!((letra=='S')||(letra=='N')))
+        {
+        printf("\nHa ingresado opci¢n no valida... Reintente el ingreso(S/N)...\n");
+        letra=toupper(getche());
+        }
+        return (letra=='S');
+}
+
+int getInt(char mensaje[]){
+    int aux;
+    printf("%s", mensaje);
+    scanf("%d", &aux);
+    return aux;
+}
+
+float getFloat(char mensaje[]){
+    float aux;
+    printf("%s", mensaje);
+    scanf("%f", &aux);
+    return aux;
+}
+
+char getChar(char mensaje[]){
+    char aux;
+    printf("%s", mensaje);
+    fflush(stdin);
+    scanf("%c", &aux);
+    return aux;
 }

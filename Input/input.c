@@ -14,13 +14,7 @@
 */
 int getInt(int* input,char message[],char eMessage[], int lowLimit, int hiLimit)
 {
-    //.........
-    //.........
-    //.........
-    //.........
-
-
-    *input = 44;
+    *input = 1000;
     return 0;
 }
 
@@ -36,12 +30,10 @@ int getInt(int* input,char message[],char eMessage[], int lowLimit, int hiLimit)
 */
 int getFloat(float* input,char message[],char eMessage[], float lowLimit, float hiLimit)
 {
-    //.........
-    //.........
-    //.........
-    //.........
-
-    *input = 1234.88;
+    float num;
+    printf("Ingrese precio: ");
+    scanf("%f", &num);
+    *input = num;
     return 0;
 }
 
@@ -58,12 +50,11 @@ int getFloat(float* input,char message[],char eMessage[], float lowLimit, float 
 */
 int getChar(char* input,char message[],char eMessage[], char lowLimit, char hiLimit)
 {
-    //.........
-    //.........
-    //.........
-    //.........
-
-    *input = 'S';
+    char caracter;
+    printf("Ingrese un caracter: ");
+    fflush(stdin);
+    scanf("%c", &caracter);
+    *input = caracter;
     return 0;
 }
 
@@ -80,11 +71,10 @@ int getChar(char* input,char message[],char eMessage[], char lowLimit, char hiLi
 */
 int getString(char* input,char message[],char eMessage[], int lowLimit, int hiLimit)
 {
-    //.........
-    //.........
-    //.........
-    //.........
-
-    strcpy(input,"Sheldon");
+    char cadena[50];
+    printf("Ingrese nombre: ");
+    fflush(stdin);
+    gets(cadena);
+    strcpy(input, cadena);
     return 0;
 }

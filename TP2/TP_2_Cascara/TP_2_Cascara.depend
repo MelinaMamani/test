@@ -6,3 +6,16 @@
 
 1524657290 c:\users\alumno\desktop\progr\tp2\tp_2_cascara\funciones.h
 
+1525837967 source:c:\users\cristina\desktop\melina\test\tp2\tp_2_cascara\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1525837805 c:\users\cristina\desktop\melina\test\tp2\tp_2_cascara\funciones.h
+
+1525821656 source:c:\users\cristina\desktop\melina\test\tp2\tp_2_cascara\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+

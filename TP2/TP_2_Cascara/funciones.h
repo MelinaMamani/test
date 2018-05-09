@@ -1,5 +1,12 @@
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
+#define TAM 10
+#define RRHH 1
+#define SIS 2
+#define ADM 3
+#define COM 4
+#define DEP 5
+
 
 typedef struct{
     int dia;
@@ -17,6 +24,7 @@ typedef struct{
     int legajo;
     char nombre[41];
     char sexo;
+    int edad;
     float sueldo;
     eFecha fechaIngreso;
     int isEmpty;
@@ -24,12 +32,19 @@ typedef struct{
 }eEmpleado;
 
 int menu();
+int getInt(char[]);
+float getFloat(char[]);
+char getChar(char[]);
 void inicializarEmpleados(eEmpleado[], int);
-void mostrarEmpleados(eEmpleado[], int);
+void mostrarEmpleados(eEmpleado[], int, eSector[]);
 void mostrarEmpleado(eEmpleado);
 int buscarLibre(eEmpleado[], int);
 int buscarEmpleado(eEmpleado[], int, int);
+void altaEmpleado(eEmpleado[], int);
 void bajaEmpleado(eEmpleado[], int);
-
-
+void modificaEmpleado(eEmpleado[], int);
+int submenuMod();
+void ordenarPorNombre(eEmpleado[], int, eSector[]);
+void contarEdades(eEmpleado[], int);
+unsigned int verifica(void);
 #endif // FUNCIONES_H_INCLUDED
