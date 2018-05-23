@@ -1,50 +1,39 @@
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
-#define TAM 10
-#define RRHH 1
-#define SIS 2
-#define ADM 3
-#define COM 4
-#define DEP 5
-
-
-typedef struct{
-    int dia;
-    int mes;
-    int anio;
-}eFecha;
+#define TAM 3
 
 typedef struct{
     int id;
     char descripcion[51];
     int isEmpty;
-}eSector;
+}eProveedores;
 
 typedef struct{
-    int legajo;
-    char nombre[41];
-    char sexo;
-    int edad;
-    float sueldo;
-    eFecha fechaIngreso;
+    int codigo;
+    char descripcion[41];
+    int cantidad;
+    float importe;
     int isEmpty;
-    int idSector;
-}eEmpleado;
+    int idProveedor;
+}eProducto;
 
 int menu();
 int getInt(char[]);
 float getFloat(char[]);
 char getChar(char[]);
-void inicializarEmpleados(eEmpleado[], int);
-void mostrarEmpleados(eEmpleado[], int, eSector[]);
-void mostrarEmpleado(eEmpleado);
-int buscarLibre(eEmpleado[], int);
-int buscarEmpleado(eEmpleado[], int, int);
-void altaEmpleado(eEmpleado[], int);
-void bajaEmpleado(eEmpleado[], int);
-void modificaEmpleado(eEmpleado[], int);
+void inicializarProductos(eProducto[], int);
+//void mostrarProductos(eProducto[], int, eProveedores[]);
+void mostrarProducto(eProducto);
+int buscarLibre(eProducto[], int);
+int buscarProducto(eProducto[], int, int);
+void altaProducto(eProducto[], int);
+void bajaProducto(eProducto[], int);
+void modificaProducto(eProducto[], int);
 int submenuMod();
-void ordenarPorNombre(eEmpleado[], int, eSector[]);
-void contarEdades(eEmpleado[], int);
+void informarProductos(eProducto[], int);
+int submenuInfo();
+void ordenarPorDesc(eProducto[], int, eProveedores[]);
+//void contarEdades(eProducto[], int);
 unsigned int verifica(void);
+int validarEntero(int, int, int);
 #endif // FUNCIONES_H_INCLUDED

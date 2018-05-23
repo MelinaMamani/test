@@ -5,43 +5,34 @@
 
 
 int main(){
-system("title ABS formularios");
+system("title ABM formularios");
 char salir='S';
 
-eEmpleado gente[TAM];
-eSector sectores[5];
+eProducto producto[TAM];
+eProveedores proveedores[5];
 
-inicializarEmpleados(gente,TAM);
-hardCode(sectores);
+inicializarProductos(producto,TAM);
+hardCode(proveedores);
 
 do{
     switch (menu()){
 
     case 1 :
-        altaEmpleado(gente,TAM);
+        altaProducto(producto,TAM);
         break;
     case 2 :
-        bajaEmpleado(gente,TAM);
+        bajaProducto(producto,TAM);
         break;
     case 3 :
-        modificaEmpleado(gente,TAM);
+        modificaProducto(producto,TAM);
         break;
     case 4 :
-        system("cls");
-        printf("Lista de empleados: \n");
-        mostrarEmpleados(gente,TAM,sectores);
+        informarProductos(producto, TAM);
         break;
-    case 5 :
-        system("cls");
-        printf("Lista ordenada por nombres: \n");
-        ordenarPorNombre(gente,TAM,sectores);
+    case 5:
+        ordenarPorDesc(producto, TAM, proveedores);
         break;
     case 6:
-        system("cls");
-        printf("Grafico de edades\n");
-        contarEdades(gente,TAM);
-        break;
-    case 7:
         if(verifica()==0)
         salir = 'N';
         break;

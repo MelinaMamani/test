@@ -3,16 +3,24 @@
 #include <string.h>
 #include "funciones.h"
 
+/** \brief Muestra un menú
+ * y pide al usuario que ingrese
+ * \param "opcion"
+ * \param
+ * \return devuelve opcion
+ *
+ */
+
+
 int menu(){
 
     int opcion;
     printf("1) Alta\n");
     printf("2) Baja\n");
     printf("3) Modificar\n");
-    printf("4) Listar\n");
-    printf("5) Ordenar por nombres\n");
-    printf("6) Mostrar grafico de edades\n");
-    printf("7) Salir\n");
+    printf("4) Informar\n");
+    printf("5) Listar\n");
+    printf("6) Salir\n");
 
     printf("Ingrese una opcion: ");
     scanf("%d",&opcion);
@@ -20,41 +28,60 @@ int menu(){
     return opcion;
 }
 
-void hardCode(eSector sectores[]){
-    eSector nuevoSector;
 
-    nuevoSector.id = 1;
-    strcpy(nuevoSector.descripcion, "RRHH");
-    nuevoSector.isEmpty = 0;
-    sectores[0] = nuevoSector;
+/** \brief Da de alta
+ * a todos los proveedores
+ */
+
+void hardCode(eProveedores proveedores[]){
+    eProveedores nuevoProveedor;
+
+    nuevoProveedor.id = 1;
+    strcpy(nuevoProveedor.descripcion, "Prov1");
+    nuevoProveedor.isEmpty = 0;
+    proveedores[0] = nuevoProveedor;
 
 
-    nuevoSector.id = 2;
-    strcpy(nuevoSector.descripcion, "Sistemas");
-    nuevoSector.isEmpty = 0;
-    sectores[1] = nuevoSector;
+    nuevoProveedor.id = 2;
+    strcpy(nuevoProveedor.descripcion, "Prov2");
+    nuevoProveedor.isEmpty = 0;
+    proveedores[1] = nuevoProveedor;
 
-    sectores[2].id = 3;
-    strcpy(sectores[2].descripcion, "Administracion");
-    sectores[2].isEmpty = 0;
+    proveedores[2].id = 3;
+    strcpy(proveedores[2].descripcion, "Prov3");
+    proveedores[2].isEmpty = 0;
 
-    sectores[3].id = 4;
-    strcpy(sectores[3].descripcion, "Compras");
-    sectores[3].isEmpty = 0;
+    proveedores[3].id = 4;
+    strcpy(proveedores[3].descripcion, "Prov4");
+    proveedores[3].isEmpty = 0;
 
-    sectores[4].id = 5;
-    strcpy(sectores[4].descripcion, "Deposito");
-    sectores[4].isEmpty = 0;
+    proveedores[4].id = 5;
+    strcpy(proveedores[4].descripcion, "Prov5");
+    proveedores[4].isEmpty = 0;
 }
 
-void inicializarEmpleados(eEmpleado vec[],int tam){
+//FUNCIONES DE UTILIDAD
+
+/** \brief Inicializa a los
+ * Productos con 1
+ */
+
+void inicializarProductos(eProducto vec[],int tam){
     int i;
     for(i=0;i<tam;i++){
         vec[i].isEmpty=1;
     }
 }
 
-int buscarLibre(eEmpleado vec[] ,int tam){
+/** \brief
+ *  Busca un lugar libre en Productos
+ * \param
+ * \param
+ * \return regresa el indice donde haya lugar
+ *
+ */
+
+int buscarLibre(eProducto vec[] ,int tam){
     int indice=-1;
     int i;
     for(i=0;i<tam;i++){
@@ -66,32 +93,27 @@ int buscarLibre(eEmpleado vec[] ,int tam){
     return indice;
 }
 
-void mostrarEmpleados(eEmpleado vec[], int tam, eSector sec[]){
-    int i, j;
-    printf("\nLegajo   \tNombre\tEdad\tSexo\tSueldo  \tF. de Ingr.\tSector\n");
-    for(i=0; i< tam; i++)
-    {
-        if(vec[i].isEmpty == 0)
-        {
-            for(j=0; j<5; j++){
-                if(vec[i].idSector==sec[j].id){
-                    printf("%4d \t%s \t%d \t%c \t$%8.2f \t%02d/%02d/%4d \t%s\n", vec[i].legajo, vec[i].nombre, vec[i].edad, vec[i].sexo, vec[i].sueldo, vec[i].fechaIngreso.dia, vec[i].fechaIngreso.mes, vec[i].fechaIngreso.anio, sec[j].descripcion);
-                }
-            }
-        }
-    }
-    printf("\n");
+/** \brief Muestra un Producto
+ *  segun el indice
+ *
+ */
+
+void mostrarProducto(eProducto prod){
+    printf("%4d     %s      %d        $%10.2f   Num. Prov.: %d\n", prod.codigo, prod.descripcion, prod.cantidad, prod.importe, prod.idProveedor);
 }
 
-void mostrarEmpleado(eEmpleado emp){
-    printf("%4d     %s      %d     %c     $%10.2f    %02d/%02d/%4d     Num. Sector: %d\n", emp.legajo, emp.nombre, emp.edad, emp.sexo, emp.sueldo, emp.fechaIngreso.dia, emp.fechaIngreso.mes, emp.fechaIngreso.anio, emp.idSector);
-}
-
-int buscarEmpleado(eEmpleado vec[],int tam,int legajo){
+/** \brief
+ *  Busca un Producto segun el codigo ingresado
+ * \param
+ * \param
+ * \return regresa el indice donde esta el Producto
+ *
+ */
+int buscarProducto(eProducto vec[],int tam,int codigo){
     int indice=-1;
     int i;
     for(i=0;i<tam;i++){
-        if(vec[i].isEmpty == 0 && vec[i].legajo==legajo){
+        if(vec[i].isEmpty == 0 && vec[i].codigo==codigo){
             indice=i;
             break;
         }
@@ -99,64 +121,72 @@ int buscarEmpleado(eEmpleado vec[],int tam,int legajo){
     return indice;
 }
 
-void altaEmpleado(eEmpleado vec[],int tam){
-    eEmpleado nuevoEmpleado;
+
+void altaProducto(eProducto vec[],int tam){
+    eProducto nuevoProducto;
     int indice;
     int esta;
-    int legajo;
+    int codigo;
     char confirma;
-    char aux[41];
 
     system("cls");
-    printf("Alta de empleado\n\n");
+    printf("Alta de Producto\n\n");
 
-    legajo = getInt("Ingrese el legajo: ");
+    codigo = getInt("Ingrese el codigo: ");
 
     indice = buscarLibre(vec, tam);
 
     if(indice == -1)
     {
-        printf("\nEl sistema esta completo. No se puede dar de alta a empleados nuevos.\n\n");
+        printf("\nEl sistema esta completo. No se puede dar de alta a Productos nuevos.\n\n");
     }
     else
 
-        esta = buscarEmpleado(vec, tam, legajo);
+        esta = buscarProducto(vec, tam, codigo);
 
         if(esta != -1)
         {
-            printf("\nEl legajo %d ya esta dado de alta en el sistema.\n", legajo);
-                   mostrarEmpleado(vec[esta]);
+            printf("\nEl codigo %d ya esta dado de alta en el sistema.\n", codigo);
+                   mostrarProducto(vec[esta]);
         }
         else{
-                   nuevoEmpleado.isEmpty = 0;
-                   nuevoEmpleado.legajo = legajo;
+                   nuevoProducto.isEmpty = 0;
+                   nuevoProducto.codigo = codigo;
 
-                   printf("Ingrese nombre: ");
+                   printf("Ingrese descripcion: ");
                    fflush(stdin);
-                   gets(nuevoEmpleado.nombre);
+                   gets(nuevoProducto.descripcion);
 
-                   nuevoEmpleado.edad = getInt("Ingrese su edad: ");
+                   while(strlen(nuevoProducto.descripcion)>41){
+                           printf("Reingrese descripcion: ");
+                           fflush(stdin);
+                           gets(nuevoProducto.descripcion);
+                   }
 
-                   nuevoEmpleado.sexo = getChar("Ingrese el sexo: ");
+                   nuevoProducto.cantidad = getInt("Ingrese su cantidad: ");
 
-                   nuevoEmpleado.sueldo = getFloat("Ingrese el sueldo: ");
+                    while(nuevoProducto.cantidad<0){
+                        nuevoProducto.cantidad = getInt("Reingrese su cantidad: ");
+                    }
 
-                   printf("Ingrese fecha de ingreso d / m / a\n");
-                   nuevoEmpleado.fechaIngreso.dia = getInt("Dia: ");
-                   nuevoEmpleado.fechaIngreso.mes = getInt("Mes: ");
-                   nuevoEmpleado.fechaIngreso.anio = getInt("Anio: ");
+                   nuevoProducto.importe = getFloat("Ingrese el importe: ");
 
-                   printf("\n1) RRHH");
-                   printf("\n2) Sistemas");
-                   printf("\n3) Administracion");
-                   printf("\n4) Compras");
-                   printf("\n5) Deposito");
-                   nuevoEmpleado.idSector = getInt("\nIngrese un sector: ");
+                   while(nuevoProducto.importe<=0){
+                        nuevoProducto.importe = getFloat("Reingrese importe: ");
+                   }
 
-                   vec[indice] = nuevoEmpleado;
+                   printf("\n1) Proveedor 1");
+                   printf("\n2) Proveedor 2");
+                   printf("\n3) Proveedor 3");
+                   printf("\n4) Proveedor 4");
+                   printf("\n5) Proveedor 5");
+                   nuevoProducto.idProveedor = getInt("\nIngrese un proveedor: ");
+                   nuevoProducto.idProveedor = validarEntero(nuevoProducto.idProveedor, 0, 6);
+
+                   vec[indice] = nuevoProducto;
 
                    do{
-                        printf("\nConfirma el alta de empleado? s/n: ");
+                        printf("\nConfirma el alta de Producto? s/n: ");
                         fflush(stdin);
                         scanf("%c", &confirma);
                         confirma = tolower(confirma);
@@ -173,25 +203,25 @@ void altaEmpleado(eEmpleado vec[],int tam){
            }
   }
 
-void bajaEmpleado(eEmpleado vec[], int tam){
-    int legajo;
+void bajaProducto(eProducto vec[], int tam){
+    int codigo;
     int esta;
     char confirma;
 
     system("cls");
-    printf("Baja del Empleado\n\n");
+    printf("Baja del Producto\n\n");
 
-        legajo = getInt("Ingrese el legajo: ");
+        codigo = getInt("Ingrese el codigo: ");
 
-        esta = buscarEmpleado(vec, tam, legajo);
+        esta = buscarProducto(vec, tam, codigo);
 
         if(esta == -1)
         {
-            printf("\nEl legajo %d no se encuentra en el sistema\n\n", legajo);
+            printf("\nEl codigo %d no se encuentra en el sistema\n\n", codigo);
 
         }
         else{
-            mostrarEmpleado(vec[esta]);
+            mostrarProducto(vec[esta]);
 
         do{
             printf("\nConfirma baja? s/n: ");
@@ -211,70 +241,57 @@ void bajaEmpleado(eEmpleado vec[], int tam){
         }
 }
 
-void modificaEmpleado(eEmpleado vec[], int tam){
-    int legajo;
+void modificaProducto(eProducto vec[], int tam){
+    int codigo;
     int esta;
     char confirma;
-    eEmpleado modEmpleado;
+    eProducto modProducto;
 
     system("cls");
-    printf("Modificar Empleado\n\n");
+    printf("Modificar Producto\n\n");
 
-        legajo = getInt("Ingrese el legajo: ");
+        codigo = getInt("Ingrese el codigo: ");
 
-        esta = buscarEmpleado(vec, tam, legajo);
+        esta = buscarProducto(vec, tam, codigo);
 
         if(esta == -1)
         {
-            printf("\nEl legajo %d no se encuentra en el sistema\n\n", legajo);
+            printf("\nEl codigo %d no se encuentra en el sistema\n\n", codigo);
 
         }
         else{
 
-                mostrarEmpleado(vec[esta]);
+                mostrarProducto(vec[esta]);
 
               switch(submenuMod()){
 
                 case 1:
-                    modEmpleado.legajo = getInt("Ingrese nuevo legajo: ");
-                    vec[esta].legajo = modEmpleado.legajo;
+                    printf("Ingrese nuevo descripcion: ");
+                    fflush(stdin);
+                    gets(modProducto.descripcion);
+
+                    while(strlen(modProducto.descripcion)>41){
+                           printf("Reingrese descripcion: ");
+                           fflush(stdin);
+                           gets(modProducto.descripcion);
+                    }
+
+                    strcpy(vec[esta].descripcion, modProducto.descripcion);
                     break;
                 case 2:
-                    printf("Ingrese nuevo nombre: ");
-                    fflush(stdin);
-                    gets(modEmpleado.nombre);
-                    strcpy(vec[esta].nombre, modEmpleado.nombre);
-                    break;
-                case 3:
-                    modEmpleado.edad = getInt("Ingrese nueva edad: ");
-                    vec[esta].edad = modEmpleado.edad;
-                    break;
-                case 4:
-                    modEmpleado.sexo = getChar("Ingrese nuevo sexo: ");
-                    vec[esta].sexo = modEmpleado.sexo;
-                    break;
-                case 5:
-                    modEmpleado.sueldo = getFloat("Ingrese nuevo sueldo: ");
-                    vec[esta].sueldo = modEmpleado.sueldo;
-                    break;
-                case 6:
-                    printf("Ingrese nueva fecha de ingreso d / m / a: ");
-                    modEmpleado.fechaIngreso.dia = getInt("Dia: ");
-                    modEmpleado.fechaIngreso.mes = getInt("Mes: ");
-                    modEmpleado.fechaIngreso.anio = getInt("Anio: ");
+                    modProducto.cantidad = getInt("Ingrese nueva cantidad: ");
+                    while(modProducto.cantidad<0){
+                        modProducto.cantidad = getInt("Reingrese nueva cantidad: ");
+                    }
 
-                    vec[esta].fechaIngreso.dia = modEmpleado.fechaIngreso.dia;
-                    vec[esta].fechaIngreso.mes = modEmpleado.fechaIngreso.mes;
-                    vec[esta].fechaIngreso.anio = modEmpleado.fechaIngreso.anio;
+                    vec[esta].cantidad = modProducto.cantidad;
                     break;
-                case 7:
-                    printf("\n1) RRHH");
-                    printf("\n2) Sistemas");
-                    printf("\n3) Administracion");
-                    printf("\n4) Compras");
-                    printf("\n5) Deposito");
-                    modEmpleado.idSector = getInt("Ingrese nuevo sector: ");
-                    vec[esta].idSector = modEmpleado.idSector;
+               case 3:
+                    modProducto.importe = getFloat("Ingrese nuevo importe: ");
+                    while(modProducto.importe<=0){
+                        modProducto.importe = getFloat("Reingrese nuevo importe: ");
+                    }
+                    vec[esta].importe = modProducto.importe;
                     break;
                 default:
                     printf("\nOpcion no valida.\n");
@@ -302,59 +319,135 @@ void modificaEmpleado(eEmpleado vec[], int tam){
 int submenuMod(){
     int opcion;
     system("cls");
-    printf("Menu modificar empleado: \n");
-    printf("1) Legajo\n");
-    printf("2) Nombre\n");
-    printf("3) Edad\n");
-    printf("4) Sexo\n");
-    printf("5) Sueldo\n");
-    printf("6) Fecha de ingreso\n");
-    printf("7) Sector\n");
+    printf("Menu modificar Producto: \n");
+    printf("1) Descripcion\n");
+    printf("2) Cantidad\n");
+    printf("3) Importe\n");
 
     opcion = getInt("Seleccione una opcion: ");
 
     return opcion;
 }
 
-void ordenarPorNombre(eEmpleado vec[], int tam, eSector sec[]){
+void informarProductos(eProducto vec[], int tam){
+    int i, sup=0, noSup=0, d=0, cantMenor=0, cantMayor=0;
+    float suma=0, prom;
+
+    system("cls");
+    printf("Informar productos\n");
+
+    for(i=0; i<tam; i++){
+
+        if(vec[i].isEmpty == 0){
+
+            suma = vec[i].importe + suma;
+
+            if(vec[i].cantidad<=10){
+                cantMenor++;
+            }
+
+            else if(vec[i].cantidad>10){
+                cantMayor++;
+            }
+            d++;
+        }
+    }
+    prom= suma/d;
+
+    for(i=0; i<tam; i++){
+
+        if(vec[i].isEmpty == 0){
+
+            if(vec[i].importe>prom){
+               sup++;
+            }
+            else if(vec[i].importe<prom){
+                noSup++;
+            }
+        }
+    }
+
+    switch(submenuInfo()){
+    case 1:
+        printf("Total %.2f y promedio %.2f\n", suma, prom);
+        printf("Cantidad de productos que superan el promedio %d\n", sup);
+        break;
+    case 2:
+        printf("Total %.2f y promedio %.2f\n", suma, prom);
+        printf("Cantidad de productos que no superan el promedio %d\n", noSup);
+        break;
+    case 3:
+        printf("Productos con stock menor igual a 10: %d\n", cantMenor);
+        break;
+    case 4:
+        printf("Productos con stock mayor a 10: %d\n", cantMayor);
+        break;
+    default:
+        printf("\nOpcion no valida.\n");
+        system("pause");
+        system("cls");
+        break;
+    }
+
+    printf("\n");
+}
+
+int submenuInfo(){
+    int opcion;
+    system("cls");
+    printf("Menu informar Producto: \n");
+    printf("1) Total y prom. de los productos, cuantos superan el promedio\n");
+    printf("2) Total y prom. de los productos, cuantos no superan el promedio\n");
+    printf("3) Productos con stock menor igual a 10\n");
+    printf("4) Productos con stock mayor a 10\n");
+
+    opcion = getInt("Seleccione una opcion: ");
+
+    return opcion;
+}
+
+void ordenarPorDesc(eProducto vec[], int tam, eProveedores prod[]){
     int i, j;
-    eEmpleado auxiliar;
+    eProducto auxiliar;
+
+    system("cls");
+    printf("Lista ordenada por descripcions: \n");
 
     for(i=0; i< tam; i++){
         for(j=i+1; j<tam; j++){
-                if(stricmp(vec[i].nombre,vec[j].nombre)>0){
+                if(stricmp(vec[i].descripcion,vec[j].descripcion)>0){
                     auxiliar = vec[i];
                     vec[i] = vec[j];
                     vec[j] = auxiliar;
                 }
             }
     }
-    printf("\nNombre\tLegajo   \tEdad\tSexo\tSueldo\tF. de Ingr.\tSector\n");
-    for(i=0; i< tam; i++)
+    printf("\nDescripcion\tCodigo\tCantidad\tImporte\tProveedor\n");
+    for(i=0; i<tam; i++)
     {
         if(vec[i].isEmpty == 0)
         {
             for(j=0; j<5; j++){
-                if(vec[i].idSector==sec[j].id){
-                    printf("%s\t%4d   \t%d\t%c\t$%8.2f\t%02d/%02d/%4d\t%s\n", vec[i].nombre, vec[i].legajo, vec[i].edad, vec[i].sexo, vec[i].sueldo, vec[i].fechaIngreso.dia, vec[i].fechaIngreso.mes, vec[i].fechaIngreso.anio, sec[j].descripcion);
+                if(vec[i].idProveedor==prod[j].id){
+                    printf("%s\t%2d\t%d\t$%4.2f\t%s\n", vec[i].descripcion, vec[i].codigo, vec[i].cantidad, vec[i].importe, prod[j].descripcion);
                 }
             }
         }
     }
 }
 
-void contarEdades(eEmpleado vec[], int tam){
+/*void contarcantidades(eProducto vec[], int tam){
     int a = 0, b = 0, c = 0, mayor, i, flag=0;
 
     for(i=0; i<tam; i++){
         if(vec[i].isEmpty==0){
-           if(vec[i].edad>0 && vec[i].edad<=18){
+           if(vec[i].cantidad>0 && vec[i].cantidad<=18){
                     a++;
                 }
-            else if(vec[i].edad>18 && vec[i].edad<35){
+            else if(vec[i].cantidad>18 && vec[i].cantidad<35){
                     b++;
                 }
-            else if(vec[i].edad>35){
+            else if(vec[i].cantidad>35){
                     c++;
                 }
            }
@@ -371,6 +464,9 @@ void contarEdades(eEmpleado vec[], int tam){
         mayor = c;
         }
     }
+
+    system("cls");
+    printf("Grafico de cantidades\n\n");
 
     for(i=mayor; i>0; i--){
         if(i<= a){
@@ -391,7 +487,9 @@ void contarEdades(eEmpleado vec[], int tam){
     }
     printf("<18\t19-35\t>35\n\n");
 
-}
+}*/
+
+//INPUTS Y VALIDACIONES
 
 /**
 * \brief Verifica el ingreso de caracteres. Chequea para que
@@ -433,4 +531,10 @@ char getChar(char mensaje[]){
     fflush(stdin);
     scanf("%c", &aux);
     return aux;
+}
+int validarEntero(int num, int limMin, int limMax){
+    while(num<=limMin || num>=limMax){
+        num = getInt("Error. Reingrese el dato: ");
+    }
+    return num;
 }
