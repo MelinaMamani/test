@@ -9,7 +9,11 @@
 	<stdlib.h>
 	<string.h>
 
+<<<<<<< HEAD
 1527802985 source:c:\users\cristina\desktop\melina\test\archivos1\main.c
+=======
+1528286721 source:c:\users\alumno\desktop\mm\archivos1\main.c
+>>>>>>> 221c43ae2cbc5e9a202c4cc134431a87b7a35b51
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
