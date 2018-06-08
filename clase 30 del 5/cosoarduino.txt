@@ -1,0 +1,58 @@
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(8,9,4,5,6,7);
+
+float boton;
+int flag;
+
+void setup() {
+  // put your setup code here, to run once:
+     Serial.begin(9600);
+     pinMode(A0,INPUT);
+    lcd.begin(16,2);
+    //lcd.print("Holasdsad");
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  boton=analogRead(A0);
+  Serial.println(boton);
+  
+  if(boton<800 && boton>700 flag!=5)
+  {
+    lcd.print("Select");  
+    Serial.print(boton);
+    flag=5;
+  }
+  else if(boton>500 && boton<550 && flag!=4)
+  {
+    lcd.print("Left");  
+        Serial.print(boton);
+    flag=4;
+  }
+  else if(boton>300 && boton<350 && flag!=3)
+  {
+    lcd.print("Down");  
+        Serial.print(boton);
+    flag=3;
+  }
+  else if(boton>100 && boton<200 &&flag!=2)
+  {
+    lcd.print("Up");  
+    flag=2;
+        Serial.print(boton);
+  }
+  else if(boton<10&&flag!=1)
+  {
+    flag=1;
+    lcd.print("Right");  
+        Serial.print(boton);
+  }
+  else if(flag>1)
+  {
+    lcd.clear();  
+        Serial.print(boton);
+    flag=10;
+  }
+}

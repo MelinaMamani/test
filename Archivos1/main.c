@@ -37,7 +37,7 @@ int main()
         exit(1);
     }
 
-  /*  unEmpleado = new_Empleado_Param(1111, "Juan", 10000);
+  /*unEmpleado = new_Empleado_Param(1111, "Juan", 10000);
 
     *personal = *unEmpleado;
 
@@ -51,11 +51,11 @@ int main()
 
     mostrarEmpleados(personal, TAM);
 
-    guardarEmpleados(personal, TAM, "listaEmpleados.bin");*/
+    guardarEmpleados(personal, TAM, "listaEmpleados.bin");
 
   cantidad = cargarEmpleados(personal, TAM, "listaEmpleados.bin");
 
-    printf("Se cargaron %d empleados\n", cantidad);
+    printf("Se cargaron %d empleados\n", cantidad);*/
 
     mostrarEmpleados(personal, TAM);
 

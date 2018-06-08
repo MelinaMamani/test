@@ -1,0 +1,21 @@
+int analogPin = 0;
+int valor =0;
+
+LiquidCrystal lcd(4,5,6,7,8,9);
+
+void setup()
+{
+  Serial.begin(9600);
+  lcd.print("utn");
+}
+
+void loop()
+{
+  lcd.clear();
+ valor = analogRead(analogPin);
+  lcd.setCursor(0, 0);
+   lcd.print(valor);
+  
+  Serial.println(valor);
+  delay(200);
+  

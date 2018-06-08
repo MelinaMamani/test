@@ -1,42 +1,46 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "funciones.h"
-#define TAM 5
+#define TAM 50
 
 int main()
 {
     char seguir='s';
+    int cantidad;
 
-    eMovie* peliculas;
-    peliculas = newArrayMovies(TAM);
+    ePelicula* peliculas;
+    peliculas = newArrayPeliculas(TAM);
 
     if(peliculas == NULL)
     {
-        printf("No se pudo conseguir memoria\n");
+        printf("No se pudo conseguir memoria en peliculas\n");
         exit(1);
     }
+
+    cantidad = cargarPeliculas(peliculas, TAM, "peliculas.bin");
+    printf("Se cargaron %d peliculas\n", cantidad);
 
     while(seguir=='s')
     {
         switch(menu())
         {
             case 1:
-                printf("op 1");
+                altaPelicula(peliculas,TAM);
                 break;
             case 2:
-                printf("op 2");
+                bajaPelicula(peliculas,TAM);
                 break;
             case 3:
-                printf("op 3");
-               break;
+                modificaPelicula(peliculas,TAM);
+                break;
             case 4:
-                printf("op 4");
-               break;
+                generarPagina(peliculas,TAM,"misPeliculas.html");
+                break;
             case 5:
+                guardarPeliculas(peliculas, TAM, "peliculas.bin");
                 seguir = 'n';
                 break;
         }
     }
-
     return 0;
 }
