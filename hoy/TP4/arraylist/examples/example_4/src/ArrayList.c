@@ -21,17 +21,18 @@ ArrayList* al_newArrayList(void)
 {
     ArrayList* this;
     ArrayList* returnAux = NULL;
-    void* pElements;
+    void* pElements; //auxiliar para pElements
     this = (ArrayList *)malloc(sizeof(ArrayList));
 
     if(this != NULL)
     {
-        pElements = malloc(sizeof(void *)*AL_INITIAL_VALUE );
-        if(pElements != NULL)
+        pElements = malloc(sizeof(void *)*AL_INITIAL_VALUE ); //auxiliar
+        if(pElements != NULL) //auxiliar
         {
             this->size=0;
             this->pElements=pElements;
             this->reservedSize=AL_INITIAL_VALUE;
+            //esto puede no estar, funcionara igual
             this->add=al_add;
             this->len=al_len;
             this->set=al_set;
@@ -52,7 +53,7 @@ ArrayList* al_newArrayList(void)
         }
         else
         {
-            free(this);
+            free(this); //libero espacio sino encontró todo el espacio necesario
         }
     }
 
@@ -67,9 +68,35 @@ ArrayList* al_newArrayList(void)
  * \return int Return (-1) if Error [pList or pElement are NULL pointer] - (0) if Ok
  *
  */
-int al_add(ArrayList* this, void* pElement)
+int al_add(ArrayList* this, void* pElement) //meter pElement en el ArrayList* this
 {
     int returnAux = -1;
+    void** aux;
+    int flag = 0;
+
+    if(this!=NULL && pElement!=NULL)
+    {
+        if(this->size == this->reservedSize)
+        {
+            aux = (void**) realloc(this->pElements, sizeof(void*)* (this->reservedSize + AL_INCREMENT));
+            if(aux!=NULL)
+            {
+                this->pElements = aux;
+                this->reservedSize = this->reservedSize + AL_INCREMENT;
+            }
+            else
+            {
+                flag = 1;
+            }
+        }
+        if(flag == 0)
+        {
+            *(this->pElements+this->size) = pElement;
+            this->size++;
+            returnAux = 0;
+        }
+
+    }
 
     return returnAux;
 }
@@ -258,6 +285,7 @@ void* al_pop(ArrayList* this,int index)
 ArrayList* al_subList(ArrayList* this,int from,int to)
 {
     void* returnAux = NULL;
+    //ArrayList* returnAux = NULL;
 
     return returnAux ;
 }
