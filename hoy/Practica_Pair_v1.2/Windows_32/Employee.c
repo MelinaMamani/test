@@ -48,7 +48,6 @@ void employee_print(Employee* this, ArrayList* arrayList)
             }
 }
 
-
 Employee* employee_new(void)
 {
     Employee* this = (Employee*) malloc(sizeof(Employee));

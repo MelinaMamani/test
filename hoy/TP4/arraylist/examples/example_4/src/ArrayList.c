@@ -70,7 +70,7 @@ ArrayList* al_newArrayList(void)
  */
 int al_add(ArrayList* this, void* pElement) //meter pElement en el ArrayList* this
 {
-    int returnAux = -1;
+    /*int returnAux = -1;
     void** aux;
     int flag = 0;
 
@@ -98,6 +98,28 @@ int al_add(ArrayList* this, void* pElement) //meter pElement en el ArrayList* th
 
     }
 
+    return returnAux;*/
+
+    int returnAux = -1;
+    int okSizeUp;
+
+    if(this != NULL && pElement != NULL)
+    {
+        if(this->size == this->reservedSize)
+        {
+          okSizeUp = resizeUp(this);
+
+            if(okSizeUp)
+            {
+                printf("No se pudo conseguir lugar\n");
+                return 0;
+            }
+        }
+        *(this->pElements +  this->size) = pElement;
+        this->size++;
+
+        returnAux = 0;
+    }
     return returnAux;
 }
 
@@ -330,6 +352,18 @@ int al_sort(ArrayList* this, int (*pFunc)(void* ,void*), int order)
 int resizeUp(ArrayList* this)
 {
     int returnAux = -1;
+    void** aux;
+
+    if(this != NULL)
+    {
+        aux = (void**) realloc(this->pElements, sizeof(void*)* (this->reservedSize + AL_INCREMENT));
+            if(aux!=NULL)
+            {
+                this->pElements = aux;
+                this->reservedSize = this->reservedSize + AL_INCREMENT;
+                returnAux = 0;
+            }
+    }
 
     return returnAux;
 
