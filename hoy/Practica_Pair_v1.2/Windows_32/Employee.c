@@ -2,10 +2,12 @@
 #include <stdlib.h>
 #include "ArrayList.h"
 #include "Employee.h"
+#define TAM 1001
 
 int menu(){
     int opcion;
 
+    printf("Menu Empleados:\n");
     printf("1. Parse del archivo data.csv\n");
     printf("2. Listar Empleados\n");
     printf("3. Ordenar por nombre\n");
@@ -26,18 +28,32 @@ int employee_compare(void* pEmployeeA,void* pEmployeeB)
 }
 
 
-void employee_print(Employee* this)
+void employee_print(Employee* this, ArrayList* arrayList)
 {
+    int i, pause = 1;
 
+    xlkCenterPrintf("LISTA DE EMPLEADOS",1);
+
+    xlkSortPrintf(1,"%s,%s,%s",3,"ID EMPLEADO","NOMBRE","APELLIDO");
+
+            for( i=0;i < arrayList->len(arrayList);i++ )
+            {
+                this = arrayList->get(arrayList,i);
+                xlkSortPrintf(3,"%d,%s,%s",3,this->id, this->name, this->lastName);
+                if( i == 125*pause)
+                {
+                    system("pause");
+                    pause++;
+                }
+            }
 }
 
 
 Employee* employee_new(void)
 {
+    Employee* this = (Employee*) malloc(sizeof(Employee));
 
-    Employee* returnAux = NULL;
-
-    return returnAux;
+    return this;
 
 }
 
@@ -47,18 +63,51 @@ void employee_delete(Employee* this)
 
 }
 
-int employee_setId(Employee* this, int id)
+void employee_setId(Employee* this, int id)
 {
-
-    return 0;
-
+    if(id > 0)
+        this->id = id;
 }
 
 int employee_getId(Employee* this)
 {
-
-    return 0;
-
+    return this->id;
 }
 
+void employee_setName(Employee* this, char* name)
+{
+    if(strlen(name)<=51)
+        strcpy(this->name, name);
+}
+
+char* employee_getName(Employee* this)
+{
+    return this->name;
+}
+
+void employee_setLastName(Employee* this, char* lastName)
+{
+    if(strlen(lastName)<=51)
+        strcpy(this->lastName, lastName);
+}
+
+char* employee_getLastName(Employee* this)
+{
+    return this->lastName;
+}
+
+void employee_setIsEmpty(Employee* this, char* isEmpty)
+{
+    if(strcmp(isEmpty, "true")==0){
+        this->isEmpty = 1;
+    }
+    else if(strcmp(isEmpty, "false")==0){
+        this->isEmpty = 0;
+    }
+}
+
+int employee_getIsEmpty(Employee* this)
+{
+    return this->isEmpty;
+}
 

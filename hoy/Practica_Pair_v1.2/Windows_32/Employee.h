@@ -29,12 +29,26 @@ struct
 
 
 int employee_compare(void* pEmployeeA,void* pEmployeeB);
-void employee_print(Employee* this);
+
+void employee_print(Employee* this, ArrayList* arrayList);
+
 Employee* employee_new(void);
+
 void employee_delete(Employee* this);
-int employee_setId(Employee* this, int id);
+
+void employee_setId(Employee* this, int id);
 int employee_getId(Employee* this);
+
+void employee_setName(Employee* this, char*);
+char* employee_getName(Employee* this);
+
+void employee_setLastName(Employee* this, char*);
+char* employee_getLastName(Employee* this);
+
+void employee_setIsEmpty(Employee* this, char*);
+int employee_getIsEmpty(Employee* this);
 #endif // _EMPLOYEE_H
+
 
 
 

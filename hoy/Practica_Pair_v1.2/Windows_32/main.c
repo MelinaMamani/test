@@ -17,15 +17,25 @@
 int main()
 {
     char seguir = 's';
+    FILE* p;
+    Employee* lista = employee_new();
+
+    ArrayList* arrayList;
+
+    arrayList = al_newArrayList();
 
     do{
+            system("cls");
     switch(menu()){
 
         case 1:
-            printf("Archivo");
+            if(parserEmployee(p, arrayList)==0){
+                    printf("Empleados cargados. \n\n");
+            }
             break;
 
         case 2:
+            employee_print(lista, arrayList);
             break;
 
         case 3:
@@ -44,6 +54,8 @@ int main()
             seguir = 'n';
             break;
         }
+        system("pause");
+
     }while(seguir == 's');
     return 0;
 }

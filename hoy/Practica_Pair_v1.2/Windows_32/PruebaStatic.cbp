@@ -46,6 +46,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="parser.h" />
+		<Unit filename="xlook.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="xlook.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

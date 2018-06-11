@@ -75,6 +75,7 @@ int al_deleteArrayList(ArrayList* pList);
  * \return int Return length of array or (-1) if Error [pList is NULL pointer]
  *
  */
+
 int al_len(ArrayList* pList);
 
 
