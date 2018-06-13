@@ -135,7 +135,7 @@ int al_deleteArrayList(ArrayList* this)
 
     if(this != NULL){
         for(i=0; i<this->len(this); i++){
-            free(this->pElements[i]);
+            free(this->get(this, i));
         }
         returnAux = 0;
     }
@@ -172,7 +172,18 @@ int al_len(ArrayList* this)
 void* al_get(ArrayList* this, int index)
 {
     void* returnAux = NULL;
+    int i;
 
+    if(this != NULL){
+        if( index >= 0 && index < this->len(this) ){
+            for(i=0; i<this->len(this); i++){
+                if(this->pElements[i] == this->pElements[index]){
+                    returnAux = this->pElements[i];
+                    break;
+                }
+            }
+        }
+    }
 
     return returnAux;
 }
@@ -189,6 +200,18 @@ void* al_get(ArrayList* this, int index)
 int al_contains(ArrayList* this, void* pElement)
 {
     int returnAux = -1;
+    int i;
+
+    if(this != NULL && pElement != NULL){
+        for(i=0; i <this->len(this); i++){
+            if(this->get(this, i) == (pElement+i)){
+                returnAux = 1;
+            }
+            else{
+                returnAux = 0;
+            }
+        }
+    }
 
     return returnAux;
 }
@@ -322,8 +345,7 @@ void* al_pop(ArrayList* this,int index)
  */
 ArrayList* al_subList(ArrayList* this,int from,int to)
 {
-    void* returnAux = NULL;
-    //ArrayList* returnAux = NULL;
+    ArrayList* returnAux = NULL;//ArrayList* returnAux = NULL;
 
     return returnAux ;
 }

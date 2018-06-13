@@ -2226,7 +2226,7 @@
 	<string.h>
 	"../inc/Employee.h"
 
-1528895097 source:c:\users\alumno\desktop\lab\hoy\tp4\arraylist\examples\example_4\src\main.c
+1528902533 source:c:\users\alumno\desktop\lab\hoy\tp4\arraylist\examples\example_4\src\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -2235,4 +2235,10 @@
 	"../inc/Employee.h"
 
 1528891398 c:\users\alumno\desktop\lab\hoy\tp4\arraylist\examples\example_4\testing\inc\main_test.h
+
+1528902524 source:c:\users\alumno\desktop\lab\hoy\tp4\arraylist\examples\example_4\src\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../inc/ArrayList.h"
 
