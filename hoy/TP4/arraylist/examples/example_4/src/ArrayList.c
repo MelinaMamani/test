@@ -204,8 +204,9 @@ int al_contains(ArrayList* this, void* pElement)
 
     if(this != NULL && pElement != NULL){
         for(i=0; i <this->len(this); i++){
-            if(this->get(this, i) == (pElement+i)){
+            if(this->get(this, i) == (pElement)){
                 returnAux = 1;
+                break;
             }
             else{
                 returnAux = 0;
