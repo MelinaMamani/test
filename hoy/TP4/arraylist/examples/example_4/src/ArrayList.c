@@ -111,7 +111,7 @@ int al_add(ArrayList* this, void* pElement) //meter pElement en el ArrayList* th
 
             if(okSizeUp)
             {
-                printf("No se pudo conseguir lugar\n");
+                printf("No se pudo conseguir lugar.\n");
                 return 0;
             }
         }
@@ -131,7 +131,14 @@ int al_add(ArrayList* this, void* pElement) //meter pElement en el ArrayList* th
 int al_deleteArrayList(ArrayList* this)
 {
     int returnAux = -1;
+    int i;
 
+    if(this != NULL){
+        for(i=0; i<this->len(this); i++){
+            free(this->pElements[i]);
+        }
+        returnAux = 0;
+    }
     return returnAux;
 }
 
@@ -143,6 +150,14 @@ int al_deleteArrayList(ArrayList* this)
 int al_len(ArrayList* this)
 {
     int returnAux = -1;
+    int i, actualSize = 0;
+
+    if(this != NULL){
+        for(i=0; i<this->size; i++){
+            actualSize++;
+        }
+        return returnAux = actualSize;
+    }
 
     return returnAux;
 }
@@ -157,6 +172,7 @@ int al_len(ArrayList* this)
 void* al_get(ArrayList* this, int index)
 {
     void* returnAux = NULL;
+
 
     return returnAux;
 }
@@ -366,7 +382,6 @@ int resizeUp(ArrayList* this)
     }
 
     return returnAux;
-
 }
 
 /** \brief  Expand an array list
