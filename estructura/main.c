@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct{
+struct{
     char nombre [20];
     int legajo;
     float sueldo;
     char sexo;
-}eEmpleado;
+}typedef eEmpleado;
 
 int main()
 {
     eEmpleado unEmpleado;
-    eEmpleado otroEmpleado = {"Juan", 1111, 1432.56, 'm'};
+    eEmpleado otroEmpleado = {"Eunji", 1111, 1432.56, 'm'};
 
     /*unEmpleado.legajo= 1234;
     strcpy(unEmpleado.nombre, "Juan");

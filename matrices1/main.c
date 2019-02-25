@@ -12,8 +12,9 @@ int main()
     for(i=0; i<CANT; i++){
         legajo[i]= i+1;
         printf("Nombre: ");
-        fflush(stdin);
-        scanf("%[^\n]", nombre[i]);
+        /*fflush(stdin);
+        scanf("%[^\n]", nombre[i]);*/
+        gets(nombre[i])
         printf("Sueldo: ");
         scanf("%d", &sueldo[i]);
     }

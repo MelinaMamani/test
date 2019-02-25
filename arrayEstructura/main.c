@@ -27,6 +27,7 @@ int main()
     mostrarEmpleados(plantel, CANT);
     ordenarPorCriterios(plantel, CANT);
     mostrarEmpleados(plantel, CANT);
+    //ordenarPorNombre(plantel, CANT);
 
     return 0;
 }

@@ -7,8 +7,10 @@ void main(void){
     int v[CANT], estado[CANT], i, contador=0;
     char seguir;
 
-    for(i=0;i<CANT;i++)
-        estado[i]=0; // inicializamos vector
+    for(i=0;i<CANT;i++){
+        estado[i]=0;
+        v[i]=0;
+        } // inicializamos vector
 
     do{
         if(contador < CANT){

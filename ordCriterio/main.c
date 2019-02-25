@@ -12,7 +12,7 @@ int main()
         {
         for(j=i+1;j<ELEMENTOS;j++)
         {
-        if(strcmp(nombre[i],nombre[j])>1)
+        if(strcmp(nombre[i],nombre[j])>0)
         {
             strcpy(auxiliar,nombre[i]);
             strcpy(nombre[i],nombre[j]);
